@@ -9,6 +9,7 @@ using NuGet.Resolver;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -302,7 +303,7 @@ namespace Plugins.Shared.Library.Nuget
 
             //var repositories = SourceRepositoryProvider.GetRepositories();
             var repositories = GetSortedRepositories();
-
+            System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12; //加上这一句  不然报错：请求被中止: 未能创建 SSL/TLS 安全通道
             foreach (var sourceRepository in repositories)
             {
                 SourcePackageDependencyInfo dependencyInfo = null;
